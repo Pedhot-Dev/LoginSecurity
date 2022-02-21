@@ -267,10 +267,9 @@ class LoginSecurity extends PluginBase implements Listener {
                 if($data === null){
                     if(!$dt->exists("forgot-password")){
                         $this->onForgot($player);
-                    } else {
-                        $player->sendMessage(self::MSG_FORGOT_PASSWORD."§aThanks for open forgot password menu");
+                        return;
                     }
-                    return;
+                    $player->sendMessage(self::MSG_FORGOT_PASSWORD."§aThanks for open forgot password menu");
                 } else {
                     if($data[1] != null && $data[2] != null && $data[3] != null && $data[4] != null && $data[5] != null && $data[6] != null){
                         $dt->setNested("forgot-password.first-question", $data[1].":".$data[2]);
@@ -278,9 +277,9 @@ class LoginSecurity extends PluginBase implements Listener {
                         $dt->setNested("forgot-password.last-question", $data[5].":".$data[6]);
                         $dt->save();
                         $player->sendMessage(self::MSG_FORGOT_PASSWORD."§aSuccess create forgot password
-                        \n§dFIRST QUESTION: §c".$data[1]."\n§dFIRST ANSWER: §c".$data[2].
-                        "\n§dSECOND QUESTION: §c".$data[3]."\n§dSECOND ANSWER: §c".$data[4].
-                        "\n§dLAST QUESTION: §c".$data[5]."\n§dLAST ANSWER: §c".$data[6]);
+                            \n§dFIRST QUESTION: §c".$data[1]."\n§dFIRST ANSWER: §c".$data[2].
+                            "\n§dSECOND QUESTION: §c".$data[3]."\n§dSECOND ANSWER: §c".$data[4].
+                            "\n§dLAST QUESTION: §c".$data[5]."\n§dLAST ANSWER: §c".$data[6]);
                     } else {
                         $this->onForgot($player);
                         $player->sendMessage(self::MSG_FORGOT_PASSWORD."§cPlease Enter a question and answer for create forgot password");
